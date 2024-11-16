@@ -1,14 +1,18 @@
 import express from 'express';
 import pino from 'pino-http';
 import cors from 'cors';
-import dotenv from 'dotenv';
 
-dotenv.config();
+import { env } from './utils/env.js';
 
-const PORT = Number(process.env.PORT) || 3000;
+const PORT = Number(env('PORT', '3000'));
 
 export const setupServer = () => {
   const app = express();
+
+  app.use((req, res, next) => {
+    console.log(`Time: ${new Date().toLocaleString()}`);
+    next();
+  });
 
   app.use(express.json());
   app.use(cors());
@@ -22,17 +26,20 @@ export const setupServer = () => {
       },
     }),
   );
+
   app.get('/', (req, res) => {
     res.json({
       message: 'Hello World',
     });
   });
+
   app.use('*', (req, res, next) => {
     res.status(404).json({
       message: 'Not found',
     });
     next();
   });
+
   app.use((err, req, res, next) => {
     res.status(500).json({
       message: 'Something went wrong!',
