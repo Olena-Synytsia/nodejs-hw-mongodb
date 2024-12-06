@@ -4,6 +4,7 @@ export const checkRoles =
   (...roles) =>
   async (req, res, next) => {
     const { user } = req;
+
     if (!user) {
       return next(createHttpError(401, 'User not authenticated'));
     }
@@ -14,5 +15,5 @@ export const checkRoles =
       return next();
     }
 
-    return next(createHttpError(403, 'Access denied'));
+    next(createHttpError(403, 'Access denied'));
   };

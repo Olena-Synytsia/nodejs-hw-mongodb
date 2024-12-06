@@ -9,7 +9,7 @@ export const authenticate = async (req, res, next) => {
     return next(createHttpError(401, 'Please provide Authorization header'));
   }
 
-  const bearer = authHeader.split(' ')[0];
+  const bearer = authHeader.split(' ', 2)[0];
   const token = authHeader.split(' ')[1];
 
   if (bearer !== 'Bearer' || !token) {
@@ -22,10 +22,7 @@ export const authenticate = async (req, res, next) => {
     return next(createHttpError(401, 'Session not found'));
   }
 
-  const isAccessTokenExpired =
-    new Date() > new Date(session.accessTokenValidUntil);
-
-  if (isAccessTokenExpired) {
+  if (session.accessTokenValidUntil < new Date()) {
     return next(createHttpError(401, 'Access token expired'));
   }
 
@@ -36,5 +33,6 @@ export const authenticate = async (req, res, next) => {
   }
 
   req.user = user;
+
   next();
 };
