@@ -26,7 +26,8 @@ export const authenticate = async (req, res, next) => {
     return next(createHttpError(401, 'Access token expired'));
   }
 
-  const user = await UsersCollection.findById(session.userId);
+  const userId = session.userId;
+  const user = await UsersCollection.findOne({ _id: userId });
 
   if (!user) {
     return next(createHttpError(401));
