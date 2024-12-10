@@ -10,6 +10,8 @@ import { parsePaginationParams } from '../utils/parsePaginationParams.js';
 import { parseSortParams } from '../utils/parseSortParams.js';
 import { parseFilterParams } from '../utils/parseFilterParams.js';
 
+import { saveFileToUploadDir } from '../utils/saveFileToUploadDir.js';
+
 export const getContactsController = async (req, res) => {
   try {
     const { page, perPage } = parsePaginationParams(req.query);
@@ -94,7 +96,24 @@ export const deleteContactController = async (req, res, next) => {
 export const patchContactController = async (req, res, next) => {
   const { contactId } = req.params;
   const userId = req.user.id;
-  const result = await updateContact(contactId, req.body, userId);
+  const photo = req.file;
+
+  console.log('Received photo:', photo);
+
+  let photoUrl;
+
+  if (photo) {
+    photoUrl = await saveFileToUploadDir(photo);
+  }
+
+  const result = await updateContact(
+    contactId,
+    {
+      ...req.body,
+      photo: photoUrl,
+    },
+    userId,
+  );
 
   if (!result) {
     next(createHttpError(404, 'Contact not found'));
