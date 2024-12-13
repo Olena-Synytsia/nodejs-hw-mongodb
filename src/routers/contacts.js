@@ -31,9 +31,8 @@ router.get(
 
 router.post(
   '/',
-  checkRoles(ROLES.USER),
-  isValidId,
   upload.single('photo'),
+  checkRoles(ROLES.USER),
   validateBody(createContactSchema),
   ctrlWrapper(createContactController),
 );
