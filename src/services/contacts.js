@@ -56,10 +56,6 @@ export const deleteContact = async (contactId, userId) => {
 };
 
 export const updateContact = async (contactId, payload, userId) => {
-  console.log('Updating contact with contactId:', contactId);
-  console.log('Payload:', payload);
-  console.log('UserId:', userId);
-
   const rawResult = await ContactsCollection.findOneAndUpdate(
     { _id: contactId, userId },
     payload,
