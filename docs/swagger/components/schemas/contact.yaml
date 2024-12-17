@@ -19,5 +19,5 @@ properties:
     enum: ['work', 'home', 'personal']
   userId:
     description: 'ID of the user who created the contact'
-    type: ObjectId
+    type: string
     example: 67555bf30ce8bb8a3fe48bba
