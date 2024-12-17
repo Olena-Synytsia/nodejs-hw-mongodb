@@ -15,9 +15,12 @@ servers:
   - url: https://nodejs-hw-mongodb-l6rc.onrender.com
   #посилання на задеплоєний сайт
 paths:
+  /contacts:
+    post:
+      $ref: './swagger/paths/contacts/post.yaml'
   /contacts/{id}:
     get:
-      $ref: ../swagger/paths/contacts/{id}/get.yaml
+      $ref: './swagger/paths/contacts/{id}/get.yaml'
   # тут будуть посилання на ендпоінти
 components:
   securitySchemes:
