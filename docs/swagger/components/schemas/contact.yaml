@@ -1,0 +1,23 @@
+type: object
+required:
+  - name
+  - phoneNumber
+  - contactType
+  - userId
+properties:
+  name:
+    description: "Contact's name"
+    type: string
+    example: 'Olena S'
+  phoneNumber:
+    description: "Contact's phone number"
+    type: string
+    example: 123456789
+  contactType:
+    description: "Contact's type"
+    type: string
+    enum: ['work', 'home', 'personal']
+  userId:
+    description: 'ID of the user who created the contact'
+    type: ObjectId
+    example: 67555bf30ce8bb8a3fe48bba
