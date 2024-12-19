@@ -2,6 +2,7 @@ type: object
 required:
   - name
   - phoneNumber
+  - isFavourite
   - contactType
   - userId
 properties:
@@ -13,11 +14,22 @@ properties:
     description: "Contact's phone number"
     type: string
     example: 123456789
+  isFavourite:
+    description: "Contact's favourite"
+    type: boolean
+    example: true
+    default: false
   contactType:
     description: "Contact's type"
     type: string
     enum: ['work', 'home', 'personal']
+    default: 'personal'
   userId:
     description: 'ID of the user who created the contact'
     type: string
     example: 67555bf30ce8bb8a3fe48bba
+  photo:
+    description: 'Contact photo'
+    type: string
+    example: 'https://res.cloudinary.com/dkr0mmyqe/image/upload/v1734617278/qsxxtsbem8bvqmplo5a8.jpg'
+    default: null
