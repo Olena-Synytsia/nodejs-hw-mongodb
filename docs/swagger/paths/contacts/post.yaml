@@ -2,7 +2,7 @@ tags:
   - Contacts
 summary: Create contact
 operationId: createContact
-description: 'Create a contact with payload'
+description: Create a contact with payload
 security:
   - bearerAuth: []
 requestBody:
@@ -17,25 +17,29 @@ requestBody:
           - isFavourite
         properties:
           name:
-            description: "Contact's name"
+            description: Contact's name
             type: string
-            example: 'Olena S'
+            example: Olena S
           phoneNumber:
-            description: "Contact's phone number"
+            description: Contact's phone number
             type: string
             example: 123456789
+          email:
+            description: Contact's email
+            type: string
+            example: john.doe@example.com
           contactType:
-            description: "Contact's type"
+            description: Contact's type
             type: string
             enum: ['work', 'home', 'personal']
           isFavourite:
-            description: "Contact's favourite"
+            description: Contact's favourite
             type: boolean
             example: true
             default: false
 responses:
   '201':
-    description: 'Creates a contact'
+    description: Creates a contact
     content:
       application/json:
         schema:
