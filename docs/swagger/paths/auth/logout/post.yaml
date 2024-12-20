@@ -12,9 +12,11 @@ parameters:
     schema:
       type: string
       description: Identifier for the user's session
-      example: abc123xyz
+      example: j%3A%226765cba80634c137df315531%22
 responses:
   '204':
     description: No Content
+  '401':
+    $ref: ../../../components/responses/401.yaml
   '500':
     $ref: ../../../components/responses/500.yaml

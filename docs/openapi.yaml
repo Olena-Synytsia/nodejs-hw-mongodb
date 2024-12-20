@@ -11,11 +11,9 @@ tags:
     description: Operations about users.
   - name: Auth
     description: Authorization
-  # теги, що ви будете використовувати
 servers:
   - url: http://localhost:3000
   - url: https://nodejs-hw-mongodb-l6rc.onrender.com
-  #посилання на задеплоєний сайт
 paths:
   /contacts:
     post:
@@ -38,7 +36,15 @@ paths:
   /auth/logout:
     post:
       $ref: ./swagger/paths/auth/logout/post.yaml
-  # тут будуть посилання на ендпоінти
+  /auth/refresh:
+    post:
+      $ref: ./swagger/paths/auth/refresh/post.yaml
+  /auth/send-reset-email:
+    post:
+      $ref: ./swagger/paths/auth/send-reset-email/post.yaml
+  /auth/reset-pwd:
+    post:
+      $ref: ./swagger/paths/auth/reset-pwd/post.yaml
 components:
   securitySchemes:
     bearerAuth:
