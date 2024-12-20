@@ -1,0 +1,38 @@
+tags:
+  - Contacts
+summary: Delete contact
+operationId: deleteContact
+description: Delete contact by id
+security:
+  - bearerAuth: []
+parameters:
+  - in: path
+    name: id
+    required: true
+    schema:
+      type: string
+      example: 6756e8189637ce411b6dc7c6
+responses:
+  '204':
+    description: No Content
+  '400':
+    description: BadRequestError
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+          properties:
+            status:
+              type: integer
+              example: 400
+            message:
+              type: string
+              example: Bad Request
+  '404':
+    description: Contact not found
+    $ref: ../../../components/responses/404.yaml
+  '500':
+    $ref: ../../../components/responses/500.yaml
