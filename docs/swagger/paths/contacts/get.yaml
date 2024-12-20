@@ -31,11 +31,11 @@ parameters:
   - in: query
     name: filter
     schema:
-      type: string
+      type: boolean
       example: isFavourite
 responses:
   '200':
-    description: Successfully created a contact!
+    description: Found contacts
     content:
       application/json:
         schema:
@@ -50,7 +50,7 @@ responses:
               example: 200
             message:
               type: string
-              example: Successfully created a contact!
+              example: Successfully found contacts!
             data:
               type: object
               required:
@@ -86,3 +86,5 @@ responses:
                   example: true
   '401':
     $ref: '../../components/responses/401.yaml'
+  '500':
+    $ref: ../../components/responses/500.yaml

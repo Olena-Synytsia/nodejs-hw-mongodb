@@ -1,4 +1,4 @@
-description: UnauthorizedError
+description: Error fetching contacts
 content:
   application/json:
     schema:
@@ -9,7 +9,7 @@ content:
       properties:
         status:
           type: integer
-          example: 401
+          example: 500
         message:
           type: string
-          example: Please provide Authorization
+          example: Error fetching contacts

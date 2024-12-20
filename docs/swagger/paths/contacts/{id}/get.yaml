@@ -2,7 +2,7 @@ tags:
   - Contacts
 summary: Get contact by id
 operationId: getContact
-description: 'Get contact by id'
+description: Get contact by id
 security:
   - bearerAuth: []
 parameters:
@@ -11,10 +11,10 @@ parameters:
     required: true
     schema:
       type: string
-      example: '6756e8189637ce411b6dc7c6'
+      example: 6756e8189637ce411b6dc7c6
 responses:
   '200':
-    description: 'Get contact by id'
+    description: Get contact by id
     content:
       application/json:
         schema:
@@ -32,7 +32,43 @@ responses:
               example: Successfully found contact with id 6756e8189637ce411b6dc7c6!
             data:
               type: object
-              $ref: '../../../components/schemas/contact.yaml'
+              $ref: ../../../components/schemas/contact.yaml
+  '400':
+    description: BadRequestError
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+          properties:
+            status:
+              type: integer
+              example: 400
+            message:
+              type: string
+              example: Bad Request
+  '401':
+    $ref: ../../../components/responses/401.yaml
+  '403':
+    description: Access denied
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+          properties:
+            status:
+              type: integer
+              example: 403
+            message:
+              type: string
+              example: Access denied to this contact
   '404':
     description: Contact not found
-    $ref: '../../../components/responses/404.yaml'
+    $ref: ../../../components/responses/404.yaml
+  '500':
+    $ref: ../../../components/responses/500.yaml
