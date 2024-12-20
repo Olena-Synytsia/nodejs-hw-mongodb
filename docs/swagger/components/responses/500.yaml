@@ -6,10 +6,14 @@ content:
       required:
         - status
         - message
+        - error
       properties:
         status:
           type: integer
           example: 500
         message:
           type: string
-          example: Error fetching contacts
+          example: Something went wrong
+        error:
+          type: string
+          example: Expected double-quoted property name...

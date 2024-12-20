@@ -9,6 +9,8 @@ info:
 tags:
   - name: Contacts
     description: Operations about users.
+  - name: Auth
+    description: Authorization
   # теги, що ви будете використовувати
 servers:
   - url: http://localhost:3000
@@ -17,12 +19,25 @@ servers:
 paths:
   /contacts:
     post:
-      $ref: './swagger/paths/contacts/post.yaml'
+      $ref: ./swagger/paths/contacts/post.yaml
     get:
       $ref: ./swagger/paths/contacts/get.yaml
   /contacts/{id}:
     get:
-      $ref: './swagger/paths/contacts/{id}/get.yaml'
+      $ref: ./swagger/paths/contacts/{id}/get.yaml
+    delete:
+      $ref: ./swagger/paths/contacts/{id}/delete.yaml
+    patch:
+      $ref: ./swagger/paths/contacts/{id}/patch.yaml
+  /auth/register:
+    post:
+      $ref: ./swagger/paths/auth/register/post.yaml
+  /auth/login:
+    post:
+      $ref: ./swagger/paths/auth/login/post.yaml
+  /auth/logout:
+    post:
+      $ref: ./swagger/paths/auth/logout/post.yaml
   # тут будуть посилання на ендпоінти
 components:
   securitySchemes:
