@@ -1,0 +1,52 @@
+tags:
+  - Auth
+summary: User reset password
+operationId: resetPassword
+description: User reset password
+security:
+  - bearerAuth: []
+requestBody:
+  content:
+    application/json:
+      schema:
+        type: object
+        required:
+          - token
+          - password
+        properties:
+          token:
+            description: The JWT reset token.
+            type: string
+            example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NzY1YWYzNzA2MzRjMTM3ZGYzMTU1MDYiLCJlbWFpbCI6ImpvaG4uZG9lQGV4YW1wbG
+          password:
+            description: The new password to set.
+            type: string
+            example: newSecurePassword123
+responses:
+  '200':
+    description: Reset password
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: Password has been successfully reset.
+            data:
+              type: object
+              example: {}
+  '401':
+    description: Token is expired or invalid.
+    $ref: ../../../components/responses/401.yaml
+  '404':
+    $ref: ../../../components/responses/404.yaml
+  '500':
+    $ref: ../../../components/responses/500.yaml
