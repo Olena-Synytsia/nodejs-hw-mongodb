@@ -14,7 +14,6 @@ requestBody:
           - name
           - phoneNumber
           - contactType
-          - isFavourite
         properties:
           name:
             description: Contact's name
@@ -37,6 +36,12 @@ requestBody:
             type: boolean
             example: true
             default: false
+          photo:
+            description: Contact photo
+            type: string
+            format: binary
+            example: https://res.cloudinary.com/dkr0mmyqe/image/upload/v1734617278/qsxxtsbem8bvqmplo5a8.jpg
+            default: null
 responses:
   '201':
     description: Creates a contact

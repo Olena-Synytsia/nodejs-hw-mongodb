@@ -29,7 +29,7 @@ parameters:
       example: '_id'
     description: "All contact's fields can be mentioned. Default value - _id"
   - in: query
-    name: filter
+    name: isFavourite
     schema:
       type: boolean
       example: isFavourite
@@ -86,5 +86,7 @@ responses:
                   example: true
   '401':
     $ref: '../../components/responses/401.yaml'
+  '404':
+    $ref: '../../components/responses/404.yaml'
   '500':
     $ref: ../../components/responses/500.yaml

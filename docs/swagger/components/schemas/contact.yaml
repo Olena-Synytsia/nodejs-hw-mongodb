@@ -1,11 +1,12 @@
 type: object
 required:
+  - _id
   - name
   - phoneNumber
-  - isFavourite
   - contactType
+  - userId
 properties:
-  id:
+  _id:
     description: Contact id
     type: string
     example: 676428be0e1cd799d80f2599
@@ -38,5 +39,6 @@ properties:
   photo:
     description: Contact photo
     type: string
+    format: binary
     example: https://res.cloudinary.com/dkr0mmyqe/image/upload/v1734617278/qsxxtsbem8bvqmplo5a8.jpg
     default: null

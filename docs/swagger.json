@@ -49,8 +49,7 @@
                 "required": [
                   "name",
                   "phoneNumber",
-                  "contactType",
-                  "isFavourite"
+                  "contactType"
                 ],
                 "properties": {
                   "name": {
@@ -82,6 +81,13 @@
                     "type": "boolean",
                     "example": true,
                     "default": false
+                  },
+                  "photo": {
+                    "description": "Contact photo",
+                    "type": "string",
+                    "format": "binary",
+                    "example": "https://res.cloudinary.com/dkr0mmyqe/image/upload/v1734617278/qsxxtsbem8bvqmplo5a8.jpg",
+                    "default": null
                   }
                 }
               }
@@ -181,7 +187,7 @@
           },
           {
             "in": "query",
-            "name": "filter",
+            "name": "isFavourite",
             "schema": {
               "type": "boolean",
               "example": "isFavourite"
@@ -261,6 +267,9 @@
           "401": {
             "$ref": "#/components/responses/401"
           },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
           "500": {
             "$ref": "#/components/responses/500"
           }
@@ -327,8 +336,8 @@
           "401": {
             "$ref": "#/components/responses/401"
           },
-          "403": {
-            "description": "Access denied",
+          "404": {
+            "description": "Not found",
             "content": {
               "application/json": {
                 "schema": {
@@ -340,20 +349,16 @@
                   "properties": {
                     "status": {
                       "type": "integer",
-                      "example": 403
+                      "example": 404
                     },
                     "message": {
                       "type": "string",
-                      "example": "Access denied to this contact"
+                      "example": "Contact not found"
                     }
                   }
                 }
               }
             }
-          },
-          "404": {
-            "description": "Contact not found",
-            "$ref": "#/components/responses/404"
           },
           "500": {
             "$ref": "#/components/responses/500"
@@ -412,8 +417,28 @@
             }
           },
           "404": {
-            "description": "Contact not found",
-            "$ref": "#/components/responses/404"
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 404
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Contact not found"
+                    }
+                  }
+                }
+              }
+            }
           },
           "500": {
             "$ref": "#/components/responses/500"
@@ -478,6 +503,13 @@
                     "type": "boolean",
                     "example": true,
                     "default": false
+                  },
+                  "photo": {
+                    "description": "Contact photo",
+                    "type": "string",
+                    "format": "binary",
+                    "example": "https://res.cloudinary.com/dkr0mmyqe/image/upload/v1734617278/qsxxtsbem8bvqmplo5a8.jpg",
+                    "default": null
                   }
                 }
               }
@@ -521,8 +553,28 @@
             "$ref": "#/components/responses/401"
           },
           "404": {
-            "description": "Contact not found",
-            "$ref": "#/components/responses/404"
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 404
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Contact not found"
+                    }
+                  }
+                }
+              }
+            }
           },
           "500": {
             "$ref": "#/components/responses/500"
@@ -685,7 +737,28 @@
             "$ref": "#/components/responses/401"
           },
           "404": {
-            "$ref": "#/components/responses/404"
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 404
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Contact not found"
+                    }
+                  }
+                }
+              }
+            }
           },
           "500": {
             "$ref": "#/components/responses/500"
@@ -969,13 +1042,14 @@
       "contact": {
         "type": "object",
         "required": [
+          "_id",
           "name",
           "phoneNumber",
-          "isFavourite",
-          "contactType"
+          "contactType",
+          "userId"
         ],
         "properties": {
-          "id": {
+          "_id": {
             "description": "Contact id",
             "type": "string",
             "example": "676428be0e1cd799d80f2599"
@@ -1019,6 +1093,7 @@
           "photo": {
             "description": "Contact photo",
             "type": "string",
+            "format": "binary",
             "example": "https://res.cloudinary.com/dkr0mmyqe/image/upload/v1734617278/qsxxtsbem8bvqmplo5a8.jpg",
             "default": null
           }
@@ -1027,11 +1102,17 @@
       "user": {
         "type": "object",
         "required": [
+          "_id",
           "name",
           "email",
           "password"
         ],
         "properties": {
+          "_id": {
+            "description": "Contact id",
+            "type": "string",
+            "example": "676428be0e1cd799d80f2599"
+          },
           "name": {
             "description": "User's name",
             "type": "string",

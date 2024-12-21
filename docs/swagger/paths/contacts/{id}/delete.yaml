@@ -32,7 +32,20 @@ responses:
               type: string
               example: Bad Request
   '404':
-    description: Contact not found
-    $ref: ../../../components/responses/404.yaml
+    description: Not found
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+          properties:
+            status:
+              type: integer
+              example: 404
+            message:
+              type: string
+              example: Contact not found
   '500':
     $ref: ../../../components/responses/500.yaml
