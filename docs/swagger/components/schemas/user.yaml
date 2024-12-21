@@ -1,9 +1,14 @@
 type: object
 required:
+  - _id
   - name
   - email
   - password
 properties:
+  _id:
+    description: Contact id
+    type: string
+    example: 676428be0e1cd799d80f2599
   name:
     description: User's name
     type: string
