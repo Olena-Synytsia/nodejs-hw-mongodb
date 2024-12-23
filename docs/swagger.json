@@ -268,9 +268,6 @@
           "401": {
             "$ref": "#/components/responses/401"
           },
-          "404": {
-            "$ref": "#/components/responses/404"
-          },
           "500": {
             "$ref": "#/components/responses/500"
           }
@@ -395,6 +392,9 @@
                 }
               }
             }
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
           },
           "404": {
             "$ref": "#/components/responses/404"
@@ -596,6 +596,30 @@
           },
           "400": {
             "$ref": "#/components/responses/400"
+          },
+          "409": {
+            "description": "ConflictError",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 409
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Email in use"
+                    }
+                  }
+                }
+              }
+            }
           },
           "500": {
             "$ref": "#/components/responses/500"
@@ -989,7 +1013,6 @@
           "isFavourite": {
             "description": "Contact's favourite",
             "type": "boolean",
-            "example": true,
             "default": false
           },
           "contactType": {
