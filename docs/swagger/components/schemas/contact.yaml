@@ -25,7 +25,6 @@ properties:
   isFavourite:
     description: Contact's favourite
     type: boolean
-    example: true
     default: false
   contactType:
     description: Contact's type

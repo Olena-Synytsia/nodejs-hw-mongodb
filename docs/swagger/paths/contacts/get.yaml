@@ -32,7 +32,8 @@ parameters:
     name: isFavourite
     schema:
       type: boolean
-      example: isFavourite
+      default: false
+      example: true
 responses:
   '200':
     description: Found contacts
@@ -86,7 +87,5 @@ responses:
                   example: true
   '401':
     $ref: '../../components/responses/401.yaml'
-  '404':
-    $ref: '../../components/responses/404.yaml'
   '500':
     $ref: ../../components/responses/500.yaml
