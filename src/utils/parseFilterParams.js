@@ -17,6 +17,6 @@ export const parseFilterParams = (query) => {
   const parsedIsFavourite = parseIsFavourite(isFavourite);
 
   return {
-    isFavourite: parsedIsFavourite,
+    ...(parsedIsFavourite !== undefined && { isFavourite: parsedIsFavourite }),
   };
 };
