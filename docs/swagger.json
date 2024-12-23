@@ -659,6 +659,12 @@
                     "description": "User's password",
                     "type": "string",
                     "example": "123dfTR14"
+                  },
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/session"
+                    }
                   }
                 }
               }
@@ -802,8 +808,10 @@
                       "example": "Successfully refreshed a session!"
                     },
                     "data": {
-                      "type": "object",
-                      "example": "accessToken"
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/session"
+                      }
                     }
                   }
                 }
@@ -1071,6 +1079,43 @@
             "description": "User's role",
             "type": "string",
             "default": "user"
+          }
+        }
+      },
+      "session": {
+        "type": "object",
+        "required": [
+          "userId",
+          "accessToken",
+          "refreshToken",
+          "accessTokenValidUntil",
+          "refreshTokenValidUntil"
+        ],
+        "properties": {
+          "userId": {
+            "description": "User id",
+            "type": "string",
+            "example": "676428be0e1cd799d80f2599"
+          },
+          "accessToken": {
+            "description": "Access token",
+            "type": "string",
+            "example": "ZFjPI0LiUIc551ukvspOJTb+tS2LQx4knWN8kScf"
+          },
+          "refreshToken": {
+            "description": "Refresh token",
+            "type": "string",
+            "example": "MRV00P/A7M8xGabalVPpJekTWw8vl+pDKq8TKS5M"
+          },
+          "accessTokenValidUntil": {
+            "description": "Access token expiration date",
+            "type": "object",
+            "example": "Mon, 23 Dec 2024 13:45:39 GMT"
+          },
+          "refreshTokenValidUntil": {
+            "description": "Refresh token expiration date",
+            "type": "object",
+            "example": "Wed, 22 Jan 2025 14:04:39 GMT"
           }
         }
       }
