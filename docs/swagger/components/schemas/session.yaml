@@ -9,25 +9,20 @@ properties:
   userId:
     description: User id
     type: string
-    required: true
     example: 676428be0e1cd799d80f2599
   accessToken:
     description: Access token
     type: string
-    required: true
     example: ZFjPI0LiUIc551ukvspOJTb+tS2LQx4knWN8kScf
   refreshToken:
     description: Refresh token
     type: string
-    required: true
     example: MRV00P/A7M8xGabalVPpJekTWw8vl+pDKq8TKS5M
   accessTokenValidUntil:
     description: Access token expiration date
-    type: Date
-    required: true
+    type: object
     example: Mon, 23 Dec 2024 13:45:39 GMT
   refreshTokenValidUntil:
     description: Refresh token expiration date
-    type: Date
-    required: true
+    type: object
     example: Wed, 22 Jan 2025 14:04:39 GMT

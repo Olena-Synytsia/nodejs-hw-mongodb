@@ -39,8 +39,9 @@ responses:
               type: string
               example: Successfully refreshed a session!
             data:
-              type: object
-              example: accessToken
+              type: array
+              items:
+                $ref: ../../../components/schemas/session.yaml
   '401':
     $ref: ../../../components/responses/401.yaml
   '500':
